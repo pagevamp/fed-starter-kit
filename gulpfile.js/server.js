@@ -16,33 +16,33 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const browser = Browser.create();
 const bundler = webpack({
-    ...webpackConfig,
-    mode: isProduction ? 'production' : 'development',
+  ...webpackConfig,
+  mode: isProduction ? 'production' : 'development',
 });
 
 export function server() {
-    let config = {
-        server: 'dist',
-        open: true,
-        middleware: [
-            webpackDevMiddleware(bundler, {
-                /*
+  let config = {
+    server: 'dist',
+    open: true,
+    middleware: [
+      webpackDevMiddleware(bundler, {
+        /*
                 I would recommend turning this off since, in development, webpack serve the files from memory.
                 This is enabled just in case
                  */
-                writeToDisk: true,
-            }),
-        ],
-    };
+        writeToDisk: true,
+      }),
+    ],
+  };
 
-    browser.init(config);
+  browser.init(config);
 
-    gulp.watch('dev/scripts/**/*.js', gulp.parallel(scripts)).on('change', () => browser.reload());
-    // gulp.watch('dev/scss/*.scss',gulp.parallel(styles)).on('change', () => browser.reload());
-    gulp.watch('dev/scss/**/*.scss', gulp.parallel(styles)).on('change', () => browser.reload());
-    gulp.watch('dev/scss/styles/*.scss', gulp.parallel(modules)).on('change', () => browser.reload());
-    gulp.watch('dev/**/*.html', gulp.parallel(htmlmin2)).on('change', () => browser.reload());
+  gulp.watch('dev/scripts/**/*.js', gulp.parallel(scripts)).on('change', () => browser.reload());
+  // gulp.watch('dev/scss/*.scss',gulp.parallel(styles)).on('change', () => browser.reload());
+  gulp.watch('dev/scss/**/*.scss', gulp.parallel(styles)).on('change', () => browser.reload());
+  gulp.watch('dev/scss/styles/*.scss', gulp.parallel(modules)).on('change', () => browser.reload());
+  gulp.watch('dev/**/*.html', gulp.parallel(htmlmin2)).on('change', () => browser.reload());
 
-    gulp.watch('dev/images/**/*.*', gulp.series(images));
-    gulp.watch('dev/fonts/**/*.*', gulp.series(fonts));
+  gulp.watch('dev/images/**/*.*', gulp.series(images));
+  gulp.watch('dev/fonts/**/*.*', gulp.series(fonts));
 }

@@ -1,0 +1,6 @@
+{
+  "ignorePatterns": [
+    "**/gulpfile.js/*.js",
+    "dist/**/*.js"
+  ]
+}

@@ -1,9 +1,7 @@
 import { Modal } from 'bootstrap';
 
 class CustomModal {
-    constructor() {
-        
-    }
+  constructor() {}
 }
 
 export default CustomModal;

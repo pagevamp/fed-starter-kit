@@ -1,0 +1,14 @@
+@mixin system-typo($map) {
+  @each $size, $type-map in $map {
+    @each $type, $style-map in $type-map {
+      @each $property, $val in $style-map {
+        @include breakpoint-up($size) {
+          #{$type},
+          .#{$type} {
+            #{$property}: #{$val};
+          }
+        }
+      }
+    }
+  }
+}
