@@ -1,0 +1,11 @@
+.l-container {
+  max-width: map-get($t-grid, 'max-width');
+  padding-inline: map-get($t-grid, 'gutter');
+  margin-inline: auto;
+}
+
+.l-grid {
+  display: grid;
+  gap: map-get($t-grid, 'gutter');
+  grid-template-columns: repeat(map-get($t-grid, 'columns'), 1fr);
+}

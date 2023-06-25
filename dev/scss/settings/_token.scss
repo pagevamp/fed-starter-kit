@@ -1,0 +1,313 @@
+@use 'sass:math';
+/* Breakpoints */
+$t-breakpoints: (
+  'xs': 0,
+  'sm': 481px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  'xxl': 1440px,
+);
+
+/* Opacity */
+$t-opacity: (
+  '0': 0,
+  '10': 10,
+  '23': 23,
+  '100': 100,
+);
+
+/* Colors */
+$t-colors: (
+  'black': #000,
+  'white': #fff,
+  'red': red,
+  'primary': red,
+  'secondary': blue,
+  'tertiary': green,
+);
+
+/* Typo sizes */
+$t-typography-size: (
+  'p2-sm': clamp(0.69rem, calc(0.59rem + 0.44vw), 1.12rem),
+  'p2': clamp(0.69rem, calc(0.59rem + 0.44vw), 1.12rem),
+  'p1': clamp(0.83rem, calc(0.7rem + 0.59vw), 1.4rem),
+  'p': clamp(1rem, calc(0.82rem + 0.78vw), 1.75rem),
+  'h5': clamp(1.2rem, calc(0.96rem + 1.02vw), 2.19rem),
+  'h4': clamp(1.44rem, calc(1.13rem + 1.34vw), 2.73rem),
+  'h3': clamp(1.73rem, calc(1.32rem + 1.75vw), 3.42rem),
+  'h2': clamp(2.07rem, calc(1.54rem + 2.28vw), 4.27rem),
+  'h1': clamp(2.49rem, calc(1.8rem + 2.95vw), 5.34rem),
+  'h1-lg': 100px,
+) !default;
+
+/* Typo leadings */
+$t-typography-leading: (
+  'none': 1,
+  'tight': 1.35,
+  'normal': 1.5,
+  'loose': 1.7,
+) !default;
+
+/* Typo trackings */
+$t-typography-tracking: (
+  'tight': -0.01em,
+  'normal': 0,
+  'wide': 0.01em,
+  'extra-wide': 0.075em,
+) !default;
+
+/* Typo weight */
+$t-typography-weight: (
+  'light': 300,
+  'normal': 400,
+  'medium': 600,
+  'bold': 700,
+) !default;
+
+/* Font face */
+$t-fonts: (
+  '1': (
+    // style-name: value
+    'font-family': 'FT base',
+    'src': url('../../fonts/FTBase-Book.woff2') format('woff2'),
+    'font-weight': 300,
+  ),
+  '2': (
+    // style-name: value
+    'font-family': 'FT base',
+    'src': url('../../fonts/FTBase-Regular.woff2') format('woff2'),
+    'font-weight': 400,
+  ),
+);
+
+/* Default fonts */
+$t-typography--default-font: 'Helvetica Neue, Helvetica, Arial, sans-serif' !default;
+
+$multiplier: 4px;
+
+/* Spacings */
+$t-spacing: (
+  '0': 0,
+  '4': $multiplier * 1,
+  '8': $multiplier * 2,
+  '12': $multiplier * 3,
+  '16': $multiplier * 4,
+  '20': $multiplier * 5,
+);
+
+/* Ratios */
+$t-ratio: (
+  '1x1': math.div(1, 1),
+  '3x4': math.div(4, 3),
+  '4x3': math.div(3, 4),
+  '16x9': math.div(9, 16),
+);
+
+/* Grid */
+$t-grid: (
+  'max-width': 108.5rem,
+  'gutter': map-get($t-spacing, sm),
+  'columns': 12,
+);
+
+// UTILITY BUILDER
+
+/* Typo styles */
+$t-typography: (
+  'xs': (
+    'h1': (
+      'font-size':
+        map-get(
+          $map: $t-typography-size,
+          $key: h1,
+        ),
+    ),
+    'h2': (
+      'font-size':
+        map-get(
+          $map: $t-typography-size,
+          $key: h2,
+        ),
+    ),
+    'h3': (
+      'font-size':
+        map-get(
+          $map: $t-typography-size,
+          $key: h3,
+        ),
+    ),
+    'h4': (
+      'font-size':
+        map-get(
+          $map: $t-typography-size,
+          $key: h4,
+        ),
+    ),
+    'h5': (
+      'font-size':
+        map-get(
+          $map: $t-typography-size,
+          $key: h5,
+        ),
+    ),
+    'p1': (
+      'font-size':
+        map-get(
+          $map: $t-typography-size,
+          $key: p1,
+        ),
+    ),
+    'p2': (
+      'font-size':
+        map-get(
+          $map: $t-typography-size,
+          $key: p2,
+        ),
+    ),
+  ),
+);
+
+/* Utility classes */
+$t-utility: (
+  'Breakpoints': (
+    'prefix': 'br-',
+    'items': $t-breakpoints,
+    'root': true,
+  ),
+  'Colors': (
+    'prefix': 'c-',
+    'items': $t-colors,
+    'root': true,
+  ),
+  'Background color': (
+    'prefix': 'bg-',
+    'items': $t-colors,
+    'property': 'background',
+    'root': false,
+  ),
+  'Text color': (
+    'prefix': 'text-',
+    'items': $t-colors,
+    'property': 'color',
+    'root': false,
+  ),
+  'Display': (
+    'prefix': 'd-',
+    'items': (
+      'block': 'block',
+      'inline': 'inline',
+      'inline-flex': 'inline-flex',
+      'flex': 'flex',
+    ),
+    'property': 'display',
+    'responsive': true,
+    'root': false,
+  ),
+  'Opacity': (
+    'prefix': 'op-',
+    'items': $t-opacity,
+    'property': 'opacity',
+    'responsive': true,
+    'root': true,
+  ),
+  'Ratio': (
+    'prefix': 'ratio-',
+    'items': $t-ratio,
+    'root': true,
+  ),
+  'Aspect ratio': (
+    'prefix': 'ratio-',
+    'items': $t-ratio,
+    'property': 'aspect-ratio',
+  ),
+  'Spacing': (
+    'prefix': 'spacing-',
+    'items': $t-spacing,
+    'root': true,
+  ),
+  'Padding all': (
+    'prefix': 'p-',
+    'items': $t-spacing,
+    'property': 'padding',
+    'responsive': true,
+  ),
+  'Padding x': (
+    'prefix': 'px-',
+    'items': $t-spacing,
+    'property': 'padding-inline',
+    'responsive': true,
+  ),
+  'Padding y': (
+    'prefix': 'py-',
+    'items': $t-spacing,
+    'property': 'padding-block',
+    'responsive': true,
+  ),
+  'Padding Top': (
+    'prefix': 'pt-',
+    'items': $t-spacing,
+    'property': 'padding-block-start',
+    'responsive': true,
+  ),
+  'Padding Bottom': (
+    'prefix': 'pb-',
+    'items': $t-spacing,
+    'property': 'padding-block-end',
+    'responsive': true,
+  ),
+  'Padding Left': (
+    'prefix': 'ps-',
+    'items': $t-spacing,
+    'property': 'padding-inline-start',
+    'responsive': true,
+  ),
+  'Padding Right': (
+    'prefix': 'pe-',
+    'items': $t-spacing,
+    'property': 'padding-inline-end',
+    'responsive': true,
+  ),
+  'Margin all': (
+    'prefix': 'm-',
+    'items': $t-spacing,
+    'property': 'margin',
+    'responsive': true,
+  ),
+  'Margin x': (
+    'prefix': 'mx-',
+    'items': $t-spacing,
+    'property': 'margin-inline',
+    'responsive': true,
+  ),
+  'Margin y': (
+    'prefix': 'my-',
+    'items': $t-spacing,
+    'property': 'margin-block',
+    'responsive': true,
+  ),
+  'Margin Top': (
+    'prefix': 'mt-',
+    'items': $t-spacing,
+    'property': 'margin-block-start',
+    'responsive': true,
+  ),
+  'Margin Bottom': (
+    'prefix': 'mb-',
+    'items': $t-spacing,
+    'property': 'margin-block-end',
+    'responsive': true,
+  ),
+  'Margin Left': (
+    'prefix': 'ms-',
+    'items': $t-spacing,
+    'property': 'margin-inline-start',
+    'responsive': true,
+  ),
+  'Margin Right': (
+    'prefix': 'me-',
+    'items': $t-spacing,
+    'property': 'margin-inline-end',
+    'responsive': true,
+  ),
+);

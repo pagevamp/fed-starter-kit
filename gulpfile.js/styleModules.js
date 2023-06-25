@@ -12,42 +12,42 @@ import sass from 'gulp-sass';
 import bs from 'browser-sync';
 
 const paths = {
-    styles: {
-        src: 'dev/scss/*.scss',
-        dest: 'dist/css/',
-    },
-    moduleStyles: {
-        src: 'dev/scss/styles/*.scss',
-        dest: 'dist/css/styles/',
-    },
+  styles: {
+    src: 'dev/scss/*.scss',
+    dest: 'dist/css/',
+  },
+  moduleStyles: {
+    src: 'dev/scss/styles/*.scss',
+    dest: 'dist/css/styles/',
+  },
 };
 var versionConfig = {
-    value: '%MDS%',
-    append: {
-        key: 'v',
-        to: ['css', 'js'],
-    },
+  value: '%MDS%',
+  append: {
+    key: 'v',
+    to: ['css', 'js'],
+  },
 };
 function modules() {
-    return gulp
-        .src(paths.moduleStyles.src)
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
-        .pipe(cleanCSS())
-        .pipe(
-            autoprefixer({
-                browsers: ['last 2 versions'],
-                cascade: false,
-            })
-        )
-        .pipe(
-            rename({
-                suffix: '.min',
-            })
-        )
-        .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest(paths.moduleStyles.dest))
-        .pipe(bs.stream());
+  return gulp
+    .src(paths.moduleStyles.src)
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+    .pipe(cleanCSS())
+    .pipe(
+      autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: false,
+      })
+    )
+    .pipe(
+      rename({
+        suffix: '.min',
+      })
+    )
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest(paths.moduleStyles.dest))
+    .pipe(bs.stream());
 }
 module.exports = { modules };
